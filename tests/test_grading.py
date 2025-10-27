@@ -1,4 +1,4 @@
-from mgimo.grading import Grade, convert_to_letter, score_to_grade
+from mgimo.utils.grading import Grade, convert_to_letter, score_to_grade
 
 
 def test_letter_converts_to_string():

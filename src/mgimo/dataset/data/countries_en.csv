@@ -1,0 +1,194 @@
+Country,Year,Capital,Value,is_un
+Afghanistan,2018,Kabul,4.012,True
+Albania,2018,Tirana,476,True
+Algeria,2018,Algiers,2.694,True
+Andorra,2018,Andorra la Vella,23,True
+Angola,2018,Luanda,7.774,True
+Antigua and Barbuda,2018,Saint John's,21,True
+Argentina,2018,Buenos Aires,14.967,True
+Armenia,2018,Yerevan,1.080,True
+Australia,2018,Canberra,448.0,True
+Austria,2018,Vienna,1.901,True
+Azerbaijan,2018,Baku,2.286,True
+Bahamas,2018,Nassau,280.0,True
+Bahrain,2018,Manama,565.0,True
+Bangladesh,2018,Dhaka,19.578,True
+Barbados,2018,Bridgetown,89.0,True
+Belarus,2018,Minsk,2.005,True
+Belgium,2018,Brussels,2.05,True
+Belize,2018,Belmopan,23.0,True
+Benin,2018,Porto-Novo,285.0,True
+Bhutan,2018,Thimphu,203.0,True
+Bolivia,2018,Sucre,278.0,True
+Bosnia and Herzegovina,2018,Sarajevo,343.0,True
+Botswana,2018,Gaborone,269.0,True
+Brazil,2018,Brasilia,4.47,True
+Brunei Darussalam,2018,Bandar Seri Begawan,41.0,True
+Bulgaria,2018,Sofia,1.272,True
+Burkina Faso,2018,Ouagadougou,2.531,True
+Burundi,2018,Bujumbura,899.0,True
+Cabo Verde,2018,Praia,168.0,True
+Cambodia,2018,Phnom Penh,1.952,True
+Cameroon,2018,Yaoundщ,3.656,True
+Canada,2018,Ottawa,1.363,Truee
+Central African Republic,2018,Bangui,851.0,True
+Chad,2018,N'Djamena,1.323,True
+Chile,2018,Santiago,6.68,True
+China,2018,Beijing,19.618,True
+Colombia,2018,Bogota,10.574,True
+Comoros,2018,Moroni,62.0,True
+Congo,2018,Brazzaville,2.23,True
+Costa Rica,2018,San Josщ,1.358,True
+Côte D'Ivoire,2018,Yamoussoukro,231.0,True
+Croatia,2018,Zagreb,686.0,True
+Cuba,2018,Havana,2.136,True
+Cyprus,2018,Nicosia,269.0,True
+Czechia,2018,Prague,1.292,True
+Democratic People's Republic of Korea,2018,Pyongyang,3.038,True
+Democratic Republic of the Congo,2018,Kinshasa,13.171,True
+Denmark,2018,Copenhagen,1.321,True
+Djibouti,2018,Djibouti,562.0,True
+Dominica,2018,Roseau,15.0,True
+Dominican Republic,2018,Santo Domingo,3.172,True
+Ecuador,2018,Quito,1.822,True
+Egypt,2018,Cairo,20.076,True
+El Salvador,2018,San Salvador,1.107,True
+Equatorial Guinea,2018,Malabo,297.0,True
+Eritrea,2018,Asmara,896.0,True
+Estonia,2018,Tallinn,437.0,True
+Eswatini,2018,Mbabane,68.0,True
+Ethiopia,2018,Addis Ababa,4.4,True
+Fiji,2018,Suva,178.0,True
+Finland,2018,Helsinki,1.279,True
+France,2018,Paris,10.901,True
+Gabon,2018,Libreville,813.0,True
+Gambia,2018,Banjul,437.0,True
+Georgia,2018,Tbilisi,1.077,True
+Germany,2018,Berlin,3.552,True
+Ghana,2018,Accra,2.439,True
+Greece,2018,Athens,3.156,True
+Grenada,2018,Saint George's,39.0,True
+Guatemala,2018,Guatemala City,2.851,True
+Guinea,2018,Conakry,1.843,True
+Guinea Bissau,2018,Bissau,558.0,True
+Guyana,2018,Georgetown,110.0,True
+Haiti,2018,Port-au-Prince,2.637,True
+Honduras,2018,Tegucigalpa,1.363,True
+Hungary,2018,Budapest,1.759,True
+Iceland,2018,Reykjavik,216.0,True
+India,2018,New Delhi,28.514,True
+Indonesia,2018,Jakarta,10.517,True
+Iran,2018,Tehran,8.896,True
+Iraq,2018,Baghdad,6.812,True
+Ireland,2018,Dublin,1.201,True
+Israel,2018,Jerusalem,907.0,True
+Italy,2018,Rome,4.210,True
+Jamaica,2018,Kingston,589.0,True
+Japan,2018,Tokyo,37.468,True
+Jordan,2018,Amman,2.065,True
+Kazakhstan,2018,Astana,1.068,True
+Kenya,2018,Nairobi,4.386,True
+Kiribati,2018,Tawara,70,True
+Kuwait,2018,Kuwait,2.989,True
+Kyrgyzstan,2018,Bishkek,996.0,True
+Laos,2018,Vientiane,665.0,True
+Latvia,2018,Riga,637.0,True
+Lebanon,2018,Beirut,2.385,True
+Lesotho,2018,Maseru,202.0,True
+Liberia,2018,Monrovia,1.418,True
+Libya,2018,Tripoli,1.158,True
+Liechtenstein,2018,Vaduz,5.0,True
+Lithuania,2018,Vilnius,536.0,True
+Luxembourg,2018,Luxembourg,120.0,True
+Madagascar,2018,Antananarivo,3.058,True
+Malawi,2018,Lilongwe,1.03,True
+Malaysia,2018,Kuala Lumpur,7.564,True
+Maldives,2018,Male,177.0,True
+Mali,2018,Bamako,2.447,True
+Malta,2018,Valletta,213.0,True
+Marshall Islands,2018,Majuro,31.0,True
+Mauritania,2018,Nouakchott,1.205,True
+Mauritius,2018,Port Louis,149.0,True
+Mexico,2018,Mexico City,21.581,True
+Micronesia,2018,Palikir,7.0,True
+Monaco,2018,Monaco,39.0,True
+Mongolia,2018,Ulaanbaatar,1.52,True
+Montenegro,2018,Podgorica,177.0,True
+Morocco,2018,Rabat,1.847,True
+Mozambique,2018,Maputo,1.102,True
+Myanmar,2018,Nay Pyi Taw,500.0,True
+Namibia,2018,Windhoek,404.0,True
+Nauru,2018,Yaren,11.0,True
+Nepal,2018,Kathmandu,1.33,True
+Netherlands,2018,Amsterdam,1.132,True
+New Zealand,2018,Wellington,411.0,True
+Nicaragua,2018,Managua,1.048,True
+Niger,2018,Niamey,1.214,True
+Nigeria,2018,Abuja,2.919,True
+Norway,2018,Oslo,1.012,True
+Oman,2018,Muscat,1.447,True
+Pakistan,2018,Islamabad,1.061,True
+Palau,2018,Melekeok,11.0,True
+Panama,2018,Panama City,1.783,True
+Papua New Guinea,2018,Port Moresby,367.0,True
+Paraguay,2018,Asunciєn,3.222,True
+Peru,2018,Lima,10.391,True
+Philippines,2018,Manila,13.482,True
+Poland,2018,Warsaw,1.768,True
+Portugal,2018,Lisbon,2.927,True
+Qatar,2018,Doha,633.0,True
+Republic of Korea,2018,Seoul,9.963,True
+Republic of Moldova,2018,Chisinau,510.0,True
+Romania,2018,Bucharest,1.821,True
+Russian Federation,2018,Moscow,12.41,True
+Rwanda,2018,Kigali,1.058,True
+Saint Kitts and Nevis,2018,Basseterre,14.0,True
+Saint Lucia,2018,Castries,22.0,True
+Saint Vincent and the Grenadines,2018,Kingstown,27.0,True
+Samoa,2018,Apia,36.0,True
+San Marino,2018,San Marino,4.0,True
+Sao Tome and Principe,2018,Sao Tome,80.0,True
+Saudi Arabia,2018,Riyadh,6.907,True
+Senegal,2018,Dakar,2.978,True
+Serbia,2018,Belgrade,1.389,True
+Seychelles,2018,Victoria,28.0,True
+Sierra Leone,2018,Freetown,1.136,True
+Singapore,2018,Singapore,5.792,True
+Slovakia,2018,Bratislava,430.0,True
+Slovenia,2018,Ljubljana,286.0,True
+Solomon Islands,2018,Honiara,82.0,True
+Somalia,2018,Mogadishu,2.082,True
+South Africa,2018,Pretoria,2.378,True
+South Sudan,2018,Juba,369.0,True
+Spain,2018,Madrid,6.497,True
+Sri Lanka,2018,Colombo,600.0,True
+Sudan,2018,Khartoum,5.534,True
+Suriname,2018,Paramaribo,239.0,True
+Sweden,2018,Stockholm,1.583,True
+Switzerland,2018,Bern,422.0,True
+Syrian Arab Republic,2018,Damascus,2.32,True
+Tajikistan,2018,Dushanbe,873.0,True
+Thailand,2018,Bangkok,10.156,True
+North Macedonia,2018,Skopje,584.0,True
+Timor-Leste,2018,Dili,281.0,True
+Togo,2018,Lomщ,1.746,True
+Tonga,2018,Nuku'alofa,23.0,True
+Trinidad and Tobago,2018,Port of Spain,544.0,True
+Tunisia,2018,Tunis,2.291,True
+Türkiye,2018,Ankara,4.919,True
+Turkmenistan,2018,Ashgabat,810.0,True
+Tuvalu,2018,Funafuti,7.0,True
+Uganda,2018,Kampala,2.986,True
+Ukraine,2018,Kyiv,2.957,True
+United Arab Emirates,2018,Abu Dhabi,1.42,True
+United Kingdom,2018,London,9.046,True
+Tanzania,2018,Dodoma,262.0,True
+United States of America,2018,Washington,5.207,True
+Uruguay,2018,Montevideo,1.737,True
+Uzbekistan,2018,Tashkent,2.464,True
+Vanuatu,2018,Port Vila,53.0,True
+Venezuela,2018,Caracas,2.935,True
+Viet Nam,2018,Hanoi,4.283,True
+Yemen,2018,Sana'a,2.779,True
+Zambia,2018,Lusaka,2.524,True
+Zimbabwe,2018,Harare,1.515,True

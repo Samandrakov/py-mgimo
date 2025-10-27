@@ -12,7 +12,7 @@ Options:
 """
 
 from docopt import docopt
-from city_quiz import city_main
+from mgimo.quiz.city_quiz import city_main
 import os
 
 __version__ = "1.0.0"

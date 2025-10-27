@@ -27,7 +27,7 @@
 ```
 """
 
-from mgimo.data import country_to_capital
+from mgimo.dataset.data import country_to_capital
 from random import choice, sample, shuffle
 
 city_dict = {v: k for k, v in country_to_capital.items()}

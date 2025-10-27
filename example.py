@@ -1,8 +1,8 @@
 from random import choice
 
-from mgimo.data import country_to_capital
-from mgimo.grading import convert_to_letter
-from mgimo.logging import Mark, Transcript
+from mgimo.dataset.data import country_to_capital
+from mgimo.utils.grading import convert_to_letter
+from mgimo.utils.logging import Mark, Transcript
 
 countries = list(country_to_capital.keys())
 assert len(countries) == 193

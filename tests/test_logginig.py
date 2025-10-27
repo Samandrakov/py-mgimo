@@ -1,4 +1,4 @@
-from mgimo.logging import Mark, Transcript
+from mgimo.utils.logging import Mark, Transcript
 
 
 def test_user_with_two_marks(tmp_path):
