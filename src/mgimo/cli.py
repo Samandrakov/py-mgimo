@@ -12,20 +12,20 @@ Options:
 """
 
 from docopt import docopt
-from mgimo.quiz.city_quiz import city_main
+from mgimo.quiz.capital_quiz import city_main
 
 __version__ = "1.0.0"
 
 def cmd_quiz(args):
     """Обработчик команды quiz"""
-    city_mode = args['--city']
-    print("✅ Starting quiz...")
-
+    city_mode = args['--capital']
+    print("Starting capital quiz...")
+#todo Добавить количество вопросов
     if city_mode:
         city_main()
     else:
-        print("Режим по умолчанию")
-        city_main()
+        print("Режим по умолчанию - Тест по столицам мира, количество вопросов - 4")
+#todo Добавить dataset, translate
 
 def main():
     args = docopt(__doc__, version=__version__)

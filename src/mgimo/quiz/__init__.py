@@ -1,3 +1,3 @@
-from .city_quiz import city_main
+from .capital_quiz import city_main
 
 __all__ = ["city_main"]
