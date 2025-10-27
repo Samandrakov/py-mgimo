@@ -1,9 +1,9 @@
 """My Awesome CLI Tool
 
 Usage:
-  cli.py quiz [--city]
-  cli.py --version
-  cli.py --help
+  mgimo quiz [--city]
+  mgimo --version
+  mgimo --help
 
 Options:
   -h --help       Show this screen
@@ -13,7 +13,6 @@ Options:
 
 from docopt import docopt
 from mgimo.quiz.city_quiz import city_main
-import os
 
 __version__ = "1.0.0"
 

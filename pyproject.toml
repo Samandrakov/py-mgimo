@@ -10,7 +10,7 @@ dependencies = [
 ]
 
 [project.scripts]
-my-tool = "cli:main"
+mgimo = "mgimo.cli:main"
 
 [build-system]
 requires = ["hatchling"]
