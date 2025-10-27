@@ -8,7 +8,7 @@ Usage:
 Options:
   -h --help       Show this screen
   --version       Show version
-  -c --city       City quiz mode
+  -c --capital       City quiz mode
 """
 
 from docopt import docopt
