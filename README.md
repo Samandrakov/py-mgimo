@@ -74,6 +74,10 @@ city = country_to_capital[country]
 print(f"Выбрана страна: {country}, столица - {city}.")
 ```
 
+## Changelog
+
+`0.5.0` - добавлен интерфейс командной строки и тест по столицам мира.
+
 ## Отладка
 
 ### Полезные скрипты
@@ -83,6 +87,7 @@ npx prettier README.md --write
 isort . --float-to-top
 black .
 ruff check .
+pytest
 ```
 
 ### Утилита командной строки
