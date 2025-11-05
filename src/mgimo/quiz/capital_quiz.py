@@ -94,8 +94,3 @@ def city_main():
         if result:
             n_success += 1
     print("Верных ответов:", n_success, "из", n_questions * 2)
-
-    from mgimo.utils.logging import Mark
-
-    m = Mark("Столицы мира я уже выучил").score(n_success, n_questions * 2)
-    # m.save("world.json")
