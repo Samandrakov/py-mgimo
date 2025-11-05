@@ -1,10 +1,10 @@
-"""
-ТЕСТ ПО СТОЛИЦАМ МИРА
+"""Тест по столицам мира.
 
-Создадим тест на знание столиц мира. Мы будем выбирать случайный город или
+Выполним тест на знание столиц мира - мы будем выбирать случайный город или
 страну, создадим несколько вариантов ответов, перечислим эти варианты
-в случайном порядке и спросим правильный ответ. Тест можно запустить
-несколько раз и указать в конце количество верных и неверных ответов.
+в случайном порядке и спросим у пользователя правильный ответ.
+Тест можно запустить несколько раз и указать в конце количество верных
+и неверных ответов.
 
 Вопросы и ответы могут выглядеть примерно так:
 
@@ -63,7 +63,7 @@ def ask_about_capital(country, n=4):
     city = country_to_capital[country]
     options = [text for text in country_to_capital.keys() if text != country]
     incorrect = sample(options, n - 1)
-    question = city + " - это столица какой страны?"
+    question = f"\n{city} - это столица какой страны?"
     return ask_user(question, country, incorrect)
 
 
@@ -75,22 +75,23 @@ def prepare_incorrect_options(k, options, correct):
 def ask_about_country(city, n=4):
     country = city_dict[city]
     incorrect = prepare_incorrect_options(n - 1, city_dict.keys(), country)
-    question = f"Укажите столицу страны {country}:"
+    question = f"\nУкажите столицу страны {country}:"
     return ask_user(question, city, incorrect)
 
 
-def city_main():
+def run(n_capitals=2, n_countries=2):
     countries = list(country_to_capital.keys())
     capitals = list(country_to_capital.values())
-    n_questions = 2
     n_success = 0
-    for _ in range(n_questions):
+    for _ in range(n_capitals):
         country = choice(countries)
         result = ask_about_capital(country)
         if result:
             n_success += 1
+    for _ in range(n_countries):
         city = choice(capitals)
         result = ask_about_country(city)
         if result:
             n_success += 1
-    print("Верных ответов:", n_success, "из", n_questions * 2)
+    ratio = int(round(n_success / (n_capitals + n_countries) * 100))
+    print("Верных ответов:", n_success, "из", n_capitals + n_countries, f"({ratio}%).")
