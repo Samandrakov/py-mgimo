@@ -1,13 +1,8 @@
 import datetime
-
 import json
-
 from dataclasses import dataclass, field
-
 from pathlib import Path
-
 from uuid import uuid1
-
 
 
 def get_id(length=6):
@@ -15,17 +10,13 @@ def get_id(length=6):
     return str(uuid1()).replace("-", "")[0:length]
 
 
-
 def now() -> str:
 
     return datetime.datetime.now().isoformat()
 
 
-
 @dataclass
-
 class Mark:
-
     """Оценка за отдельное задание.
 
 
@@ -43,7 +34,6 @@ class Mark:
 
     """
 
-
     title: str
 
     points: int = 0
@@ -56,7 +46,6 @@ class Mark:
 
     iso_timestamp: str = field(default_factory=now)
 
-
     def score(self, points: int, out_of: int):
 
         self.points = points
@@ -67,7 +56,6 @@ class Mark:
 
         return self
 
-
     def attach(self, x):
 
         content = json.dumps(x, ensure_ascii=False)
@@ -76,20 +64,16 @@ class Mark:
 
         return self
 
-
     def comment(self, text):
 
         self.note = text
 
         return self
 
-
     @property
-
     def percent(self):
 
         return round(self.points / self.out_of * 100)
-
 
     def save(self, path):
 
@@ -97,36 +81,26 @@ class Mark:
 
         Path(path).write_text(content, encoding="utf-8")
 
-
     @classmethod
-
     def load(cls, path):
 
         return Mark(**json.loads(Path(path).read_text(encoding="utf-8")))
 
 
-
 @dataclass
-
 class Transcript:
-
     """Набор выполненных заданий."""
-
 
     marks: list[Mark] = field(default_factory=list)
 
-
     def register(self, path):
-
         """Прочитать файл с оценкой за задание."""
 
         mark = Mark.load(path)
 
         self.marks.append(mark)
 
-
     @property
-
     def summary(self) -> Mark:
 
         points = 0
@@ -141,10 +115,7 @@ class Transcript:
 
         return Mark("суммарная оценка").score(points, out_of)
 
-
     @property
-
     def notes(self):
 
         return [m.note for m in self.marks]
-

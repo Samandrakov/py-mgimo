@@ -62,6 +62,9 @@ print(f"Выбрана страна: {country}, столица - {city}.")
 
 ```bash
 npx prettier README.md --write
+isort . --float-to-top
+black .
+ruff check .
 ```
 
 ### Утилита командной строки

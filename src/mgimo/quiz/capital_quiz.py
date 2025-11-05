@@ -1,8 +1,8 @@
 """
 ТЕСТ ПО СТОЛИЦАМ МИРА
 
-Создадим тест на знание столиц мира. Мы будем выбирать случайный город или 
-страну, создадим несколько вариантов ответов, перечислим эти варианты 
+Создадим тест на знание столиц мира. Мы будем выбирать случайный город или
+страну, создадим несколько вариантов ответов, перечислим эти варианты
 в случайном порядке и спросим правильный ответ. Тест можно запустить
 несколько раз и указать в конце количество верных и неверных ответов.
 
@@ -27,8 +27,9 @@
 ```
 """
 
-from mgimo.dataset.data import country_to_capital
 from random import choice, sample, shuffle
+
+from mgimo.dataset.data import country_to_capital
 
 city_dict = {v: k for k, v in country_to_capital.items()}
 
@@ -76,6 +77,7 @@ def ask_about_country(city, n=4):
     incorrect = prepare_incorrect_options(n - 1, city_dict.keys(), country)
     question = f"Укажите столицу страны {country}:"
     return ask_user(question, city, incorrect)
+
 
 def city_main():
     countries = list(country_to_capital.keys())
