@@ -41,23 +41,27 @@ mgimo --help
 mgimo quiz
 ```
 
+<details>
+<summary>Другие команды для теста по столицам</summary>  
+
 Спросить столицы 10 стран:
 
-```
+```console
 mgimo quiz --countries=10
 ```
 
 Знаете ли вы эти три столицы :
 
-```
+```console
 mgimo quiz --capitals=3
 ```
 
 Пять вопросов про столицы и пять про страны:
 
-```
+```console
 mgimo quiz --countries=5 --capitals=5
 ```
+</details>
 
 ## Библиотека
 
