@@ -1,42 +1,36 @@
-"""My Awesome CLI Tool
+"""MGIMO command line magic and datasets.
 
 Usage:
-  cli.py quiz [--city]
-  cli.py --version
-  cli.py --help
+  mgimo quiz [--capitals=n] [--countries=k]
+  mgimo --version
+  mgimo --help
 
 Options:
   -h --help       Show this screen
   --version       Show version
-  -c --city       City quiz mode
 """
 
 from docopt import docopt
-from city_quiz import city_main
-import os
 
-__version__ = "1.0.0"
+from mgimo.quiz.capitals import run
 
-def cmd_quiz(args):
-    """Обработчик команды quiz"""
-    city_mode = args['--city']
-    print("✅ Starting quiz...")
+__version__ = "0.5.0"
 
-    if city_mode:
-        city_main()
-    else:
-        print("Режим по умолчанию")
-        city_main()
+# todo: Добавить dataset, translate
+
 
 def main():
     args = docopt(__doc__, version=__version__)
+    if args["quiz"]:
+        k = args["--countries"]
+        n = args["--capitals"]
+        if n is None and k is None:
+            n = 2
+            k = 2
+        n = int(n) if n else 0
+        k = int(k) if k else 0
+        run(n_capitals=n, n_countries=k)
 
-    try:
-        if args['quiz']:
-            cmd_quiz(args)
-    except Exception as e:
-        print(f"Error: {e}")
-        exit(1)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

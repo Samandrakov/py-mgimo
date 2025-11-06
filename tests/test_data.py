@@ -1,4 +1,4 @@
-from mgimo.data import country_to_capital
+from mgimo.dataset.data import country_to_capital
 
 
 def test_capital_cities():

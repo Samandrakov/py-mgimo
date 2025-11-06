@@ -1,15 +1,16 @@
 [project]
 name = "mgimo"
-version = "0.4.0"
+version = "0.5.0"
 description = "MGIMO datasets and Python utilities."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "docopt>=0.6.2",
+    "pandas>=2.3.3",
 ]
 
 [project.scripts]
-my-tool = "cli:main"
+mgimo = "mgimo.cli:main"
 
 [build-system]
 requires = ["hatchling"]
