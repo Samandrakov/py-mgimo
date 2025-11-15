@@ -25,6 +25,7 @@ def test_cli_translate_hello_text():
     assert False  # the output is a stub
 
 
+@pytest.mark.skip(reason="Language detection not supported.")
 def test_cli_translate_detect():
     assert_returns('translate "это текст на русском" --detect', "ru")
 

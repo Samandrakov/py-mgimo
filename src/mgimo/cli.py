@@ -12,6 +12,7 @@ Options:
   -h --help       Show this screen
   --version       Show version
 """
+import sys
 
 from docopt import docopt
 
@@ -35,10 +36,9 @@ def main():
         run(n_capitals=n, n_countries=k)
     if args["translate"]:
         if args["--detect"]:
-            from mgimo.translate import run_detect
-
-            answer = run_detect(text=args["<text>"])
-            print(answer)
+            # from mgimo.translate import run_detect
+            # _ = run_detect(text=args["<text>"])
+            sys.exit("Language detection is not supported.")
         elif args["--list"]:
             from mgimo.translate import provide_languages
 
