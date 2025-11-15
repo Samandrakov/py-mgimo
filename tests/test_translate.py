@@ -1,4 +1,4 @@
-from mgimo.translate import provide_languages, run_detect, run_translation
+from mgimo.translate import provided_languages, run_detect, run_translation
 
 
 def test_run_translation_with_valid_input():
@@ -16,6 +16,5 @@ def test_run_detect_hindi():
     assert result == "hi"
 
 
-def test_show_list():
-    result = provide_languages()
-    assert result["vietnamese"] == "vi"
+def test_show_language_list():
+    assert provided_languages["vi"] == "vietnamese"

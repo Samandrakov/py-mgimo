@@ -2,7 +2,7 @@
 
 Usage:
   mgimo quiz [--capitals=n] [--countries=k]
-  mgimo translate <text> [--from=src] [--to=dst]
+  mgimo translate <text> [--from=src] [--to=dst | --to-random] [--roundtrip]
   mgimo translate <text> --detect
   mgimo translate --list [--search=str] [--json]
   mgimo --version
@@ -16,8 +16,9 @@ Options:
 from docopt import docopt
 
 from mgimo.quiz.capitals import run
+from mgimo.translate.engine import provided_languages
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 
 # todo: Добавить dataset
 
@@ -29,32 +30,41 @@ def dispatch_translate(args):
         answer = run_detect(text=args["<text>"])
         print(answer)
     elif args["--list"]:
-        from mgimo.translate import provide_languages
-
+        lang_dict = provided_languages
         if args["--search"]:
             search_str = args["--search"].lower()
             lang_dict = {
-                lang: code
-                for lang, code in provide_languages().items()
+                code: lang
+                for code, lang in provided_languages.items()
                 if search_str in lang.lower() or search_str in code.lower()
             }
-        else:
-            lang_dict = provide_languages()
 
         if args["--json"]:
             import json
 
             print(json.dumps(lang_dict, ensure_ascii=False, indent=2))
         else:
-            for language, code in lang_dict.items():
+            for code, language in lang_dict.items():
                 print(f"{code}: {language}")
     else:
         from mgimo.translate import run_translation
 
-        dst = args["--to"] or "ru"
+        if args["--to-random"]:
+            from mgimo.translate.engine import random_language_code
+
+            dst = random_language_code()
+        else:
+            dst = args["--to"] or "ru"
         src = args["--from"] or "auto"
-        answer = run_translation(text=args["<text>"], source=src, target=dst)
-        print(answer)
+        text = args["<text>"]
+        answer_1 = run_translation(text, source=src, target=dst)
+        if args["--roundtrip"]:
+            answer_2 = run_translation(text=answer_1, source=dst, target=src)
+            print(f"{src}: {text}")
+            print(f"{dst} ({provided_languages[dst]}): {answer_1}")
+            print(f"{src}: {answer_2}")
+        else:
+            print(answer_1)
 
 
 def main():

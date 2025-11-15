@@ -33,6 +33,6 @@ def test_cli_translate_list():
     assert "zu: zulu" in out
 
 
-def test_provide_languages_search_bel():
+def test_provided_languages_search_bel():
     out = run_command("translate --list --search bel")
     assert "be: belarusian" in out
