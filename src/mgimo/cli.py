@@ -3,7 +3,6 @@
 Usage:
   mgimo quiz [--capitals=n] [--countries=k]
   mgimo translate <text> [--from=src] [--to=dst]
-  mgimo translate <text> --detect
   mgimo translate --list [--json]
   mgimo --version
   mgimo --help
@@ -35,11 +34,7 @@ def main():
         k = int(k) if k else 0
         run(n_capitals=n, n_countries=k)
     if args["translate"]:
-        if args["--detect"]:
-            # from mgimo.translate import run_detect
-            # _ = run_detect(text=args["<text>"])
-            sys.exit("Language detection is not supported.")
-        elif args["--list"]:
+        if args["--list"]:
             from mgimo.translate import provide_languages
 
             lang_dict = provide_languages()
