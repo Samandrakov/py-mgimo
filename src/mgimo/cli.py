@@ -12,7 +12,6 @@ Options:
   --version       Show version
 """
 
-import sys
 
 from docopt import docopt
 
@@ -49,9 +48,9 @@ def main():
         else:
             from mgimo.translate import run_translation
 
-            answer = run_translation(
-                text=args["<text>"], source=args["--from"], target=args["--to"]
-            )
+            dst = args["--to"] or "ru"
+            src = args["--from"] or "auto"
+            answer = run_translation(text=args["<text>"], source=src, target=dst)
             print(answer)
 
 

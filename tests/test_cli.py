@@ -22,7 +22,6 @@ def assert_returns(cmdline: str, expected_output: str):
 
 def test_cli_translate_hello_text():
     assert_returns("translate Привет --from ru --to es", "Hola")
-    assert False  # the output is a stub
 
 
 @pytest.mark.skip(reason="Language detection not supported.")

@@ -3,8 +3,15 @@
 from deep_translator import GoogleTranslator
 
 
-def run_translation(text: str, source: str | None = None, target: str = "ru") -> str:
-    return f"Doing translation: {text}, {source}, {target}"
+def run_translation(
+    text: str, source: str | None = None, target: str | None = None
+) -> str:
+    if not source:
+        source = "auto"
+    if not target:
+        target = "ru"
+    translator = GoogleTranslator(source=source, target=target)
+    return translator.translate(text)
 
 
 def run_detect(text: str) -> str:

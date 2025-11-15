@@ -1,4 +1,5 @@
 import pytest
+
 from mgimo.translate import provide_languages, run_detect, run_translation
 
 
