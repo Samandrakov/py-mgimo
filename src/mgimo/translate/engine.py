@@ -1,11 +1,16 @@
 """Модуль для перевода текста."""
 
+import langdetect
 from deep_translator import GoogleTranslator
 
 
 def run_translation(
     text: str, source: str | None = None, target: str | None = None
 ) -> str:
+    """Переводит предоставленный текст с одного языка на другой.
+    Если язык источника не указан, используется автоопределение языка.
+    Если язык назначения не указан, используется русский.
+    """
     if not source:
         source = "auto"
     if not target:
@@ -15,10 +20,14 @@ def run_translation(
 
 
 def run_detect(text: str) -> str:
-    return f"Detecting language for: {text}"
+    """Определяет язык предоставленного текста, возвращает код языка в формате ISO 639-1."""
+    return langdetect.detect(text)
 
 
 def provide_languages() -> dict[str, str]:
+    """Возвращает словарь поддерживаемых для перевода языков.
+    Ключи словаря - названия языков на английском, значения - коды языков в формате ISO 639-1.
+    """
     return GoogleTranslator().get_supported_languages(as_dict=True)
 
 

@@ -24,7 +24,6 @@ def test_cli_translate_hello_text():
     assert_returns("translate Привет --from ru --to es", "Hola")
 
 
-@pytest.mark.skip(reason="Language detection not supported.")
 def test_cli_translate_detect():
     assert_returns('translate "это текст на русском" --detect', "ru")
 
@@ -32,3 +31,8 @@ def test_cli_translate_detect():
 def test_cli_translate_list():
     out = run_command("translate --list")
     assert "zu: zulu" in out
+
+
+def test_provide_languages_search_bel():
+    out = run_command("translate --list --search bel")
+    assert "be: belarusian" in out
