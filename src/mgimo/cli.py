@@ -11,6 +11,7 @@ Options:
   -h --help       Show this screen
   --version       Show version
 """
+
 import sys
 
 from docopt import docopt
