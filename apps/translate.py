@@ -30,17 +30,28 @@ starting_texts = [
 
 st.title("Translate")
 
-# Use captured values if they exist, otherwise use the sample
-if st.session_state.captured_text:
-    default_text = st.session_state.captured_text
-else:
-    default_text = choice(starting_texts)
+# Create a form to batch the updates
+with st.form("translation_form"):
+    # Use captured values if they exist, otherwise use the sample
+    if st.session_state.captured_text:
+        default_text = st.session_state.captured_text
+    else:
+        default_text = choice(starting_texts)
+    
+    # Use keys for widgets to better manage their state
+    user_input = st.text_area("Enter text to translate:", value=default_text, height="content", key="user_input")
+    src = st.text_input("Translate from:", value=st.session_state.captured_src, key="src_input")
+    dst = st.text_input("Translate to:", value="ru", key="dst_input")
+    
+    # Submit buttons for translate and capture
+    translate_col, capture_col = st.columns(2)
+    with translate_col:
+        translate_pressed = st.form_submit_button("Translate")
+    with capture_col:
+        capture_pressed = st.form_submit_button("Capture")
 
-user_input = st.text_area("Enter text to translate:", value=default_text, height="content")
-src = st.text_input("Translate from:", value=st.session_state.captured_src)
-dst = st.text_input("Translate to:", value="ru")
-
-if st.button("Translate"):
+# Handle form submissions outside the form to prevent conflicts
+if translate_pressed:
     if not user_input.strip():
         st.warning("Enter some text to translate.")
     else:
@@ -56,10 +67,11 @@ if st.button("Translate"):
         except Exception as e:
             st.error(f"An unexpected error occurred: {e}")
 
-if st.button("Capture"):
-    # Capture current values to session state
+if capture_pressed:
+    # Update the session state with current widget values
     st.session_state.captured_text = user_input
     st.session_state.captured_src = src
+    # To update the widgets, we need to trigger a rerun
     st.rerun()
 
 # To run this app, use the command:
