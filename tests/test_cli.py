@@ -39,5 +39,5 @@ def test_cli_translate_list():
 
 
 def test_provided_languages_search_bel():
-    out = run_command("translate --list --search bel")
+    out = run_command("translate --list --contains bel")
     assert "be: belarusian" in out
