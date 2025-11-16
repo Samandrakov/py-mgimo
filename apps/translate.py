@@ -36,7 +36,7 @@ if st.session_state.captured_text:
 else:
     default_text = choice(starting_texts)
 
-user_input = st.text_area("Enter text to translate:", value=default_text)
+user_input = st.text_area("Enter text to translate:", value=default_text, height="content")
 src = st.text_input("Translate from:", value=st.session_state.captured_src)
 dst = st.text_input("Translate to:", value="ru")
 
