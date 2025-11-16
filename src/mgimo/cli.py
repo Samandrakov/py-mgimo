@@ -3,7 +3,7 @@
 Usage:
   mgimo quiz [--capitals=n] [--countries=k]
   mgimo translate <text> [--from=source] [--to=target] [--roundtrip]
-  mgimo translate <text> --chain=lang1,lang2,...,langN
+  mgimo translate <text> --chain=code1,code2,codeN
   mgimo translate <text> --detect
   mgimo translate --list [--search=str] [--json]
   mgimo --version
@@ -58,6 +58,16 @@ def dispatch_translate(args):
         else:
             for code, language in lang_dict.items():
                 print(f"{code}: {language}")
+    elif args["--chain"]:
+            languages = args["--chain"].split(",")
+            current_text = args["<text>"]
+            current_source = languages[0]
+            prints(current_source, current_text)
+            for lang in languages[1:]:
+                translated_text = run_translation(current_text, current_source, lang)
+                prints(lang, translated_text)
+                current_text = translated_text
+                current_source = lang
     else:
         if args["--to"] == "random":
             args["--to"] = random_language_code()
@@ -70,16 +80,6 @@ def dispatch_translate(args):
             print(f"{src}: {text}")
             prints(dst, answer_1)
             print(f"{src}: {answer_2}")
-        elif args["--chain"]:
-            languages = args["--chain"].split(",")
-            current_text = text
-            current_source = src
-            prints(current_source, current_text)
-            for lang in languages:
-                translated_text = run_translation(current_text, current_source, lang)
-                prints(lang, translated_text)
-                current_text = translated_text
-                current_source = lang
         else:
             prints(dst, answer_1)
 
