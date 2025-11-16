@@ -68,11 +68,13 @@ if translate_pressed:
             st.error(f"An unexpected error occurred: {e}")
 
 if capture_pressed:
-    # Update the session state with current widget values
+    # Update the widget values directly through their keys in session state
+    st.session_state.user_input = user_input
+    st.session_state.src_input = src
+    # Also update the captured state
     st.session_state.captured_text = user_input
     st.session_state.captured_src = src
-    # To update the widgets, we need to trigger a rerun
-    st.rerun()
+    # No need to call st.rerun() - the form will handle the update
 
 # To run this app, use the command:
 # streamlit run translate.py
