@@ -10,6 +10,11 @@ if 'captured_src' not in st.session_state:
 # Track if we need to update the widgets from captured values
 if 'update_from_capture' not in st.session_state:
     st.session_state.update_from_capture = False
+# Track the last translated text
+if 'last_translated_text' not in st.session_state:
+    st.session_state.last_translated_text = None
+if 'last_translated_language' not in st.session_state:
+    st.session_state.last_translated_language = None
 
 # add extra pages
 
@@ -67,6 +72,10 @@ if translate_pressed:
         try:
             text = Text(user_input, src)
             translated_text = text.translate(dst)
+            # Store the translated text and its language in session state
+            st.session_state.last_translated_text = translated_text.content
+            st.session_state.last_translated_language = translated_text.language
+            
             lang_name = supported_languages[translated_text.language].capitalize()
             tag = f"{translated_text.language} ({lang_name})"
             st.badge(tag, color="blue")
@@ -77,9 +86,15 @@ if translate_pressed:
             st.error(f"An unexpected error occurred: {e}")
 
 if capture_pressed:
-    # Update the captured state with current values
-    st.session_state.captured_text = user_input
-    st.session_state.captured_src = src
+    # Check if there's a last translated text to capture
+    if st.session_state.last_translated_text is not None:
+        # Update the captured state with the translated text and its language
+        st.session_state.captured_text = st.session_state.last_translated_text
+        st.session_state.captured_src = st.session_state.last_translated_language
+    else:
+        # If no translation exists, use current user input
+        st.session_state.captured_text = user_input
+        st.session_state.captured_src = src
     # Set flag to update widgets on next run
     st.session_state.update_from_capture = True
     # Rerun to apply the updates
