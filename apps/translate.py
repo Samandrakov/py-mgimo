@@ -7,6 +7,9 @@ if 'captured_text' not in st.session_state:
     st.session_state.captured_text = ""
 if 'captured_src' not in st.session_state:
     st.session_state.captured_src = "auto"
+# Track if we need to update the widgets from captured values
+if 'update_from_capture' not in st.session_state:
+    st.session_state.update_from_capture = False
 
 # add extra pages
 
@@ -32,15 +35,24 @@ st.title("Translate")
 
 # Create a form to batch the updates
 with st.form("translation_form"):
-    # Use captured values if they exist, otherwise use the sample
-    if st.session_state.captured_text:
+    # Determine default values for widgets
+    # If we need to update from capture, use the captured values
+    if st.session_state.update_from_capture:
         default_text = st.session_state.captured_text
+        default_src = st.session_state.captured_src
+        # Reset the flag
+        st.session_state.update_from_capture = False
     else:
-        default_text = choice(starting_texts)
+        # Use captured values if they exist, otherwise use the sample
+        if st.session_state.captured_text:
+            default_text = st.session_state.captured_text
+        else:
+            default_text = choice(starting_texts)
+        default_src = st.session_state.captured_src
     
     # Use keys for widgets to better manage their state
     user_input = st.text_area("Enter text to translate:", value=default_text, height="content", key="user_input")
-    src = st.text_input("Translate from:", value=st.session_state.captured_src, key="src_input")
+    src = st.text_input("Translate from:", value=default_src, key="src_input")
     dst = st.text_input("Translate to:", value="ru", key="dst_input")
     
     # Submit buttons for translate and capture
@@ -68,13 +80,13 @@ if translate_pressed:
             st.error(f"An unexpected error occurred: {e}")
 
 if capture_pressed:
-    # Update the widget values directly through their keys in session state
-    st.session_state.user_input = user_input
-    st.session_state.src_input = src
-    # Also update the captured state
+    # Update the captured state with current values
     st.session_state.captured_text = user_input
     st.session_state.captured_src = src
-    # No need to call st.rerun() - the form will handle the update
+    # Set flag to update widgets on next run
+    st.session_state.update_from_capture = True
+    # Rerun to apply the updates
+    st.rerun()
 
 # To run this app, use the command:
 # streamlit run translate.py
