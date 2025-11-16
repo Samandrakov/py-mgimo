@@ -1,5 +1,7 @@
 """Модуль для перевода текста."""
 
+import random
+
 import langdetect
 from deep_translator import GoogleTranslator
 
@@ -16,6 +18,8 @@ def run_translation(
         source = "auto"
     if not target:
         target = "ru"
+    if target == "random":
+        target = random_language_code()
     translator = GoogleTranslator(source=source, target=target)
     return translator.translate(text)
 
@@ -41,8 +45,6 @@ def run_detect(text: str) -> str:
 
 def random_language_code() -> str:
     """Возвращает случайный код языка из списка поддерживаемых языков."""
-    import random
-
     return random.choice(list(provided_languages.keys()))
 
 
@@ -185,7 +187,7 @@ _provided_languages = {
 provided_languages = {v: k for k, v in _provided_languages.items()}
 
 
-def provided_languages_from_source() -> dict[str, str]:
+def get_provided_languages() -> dict[str, str]:
     """Возвращает словарь поддерживаемых для перевода языков.
     Ключи словаря - названия языков на английском, значения - коды языков в формате ISO 639-1.
     """

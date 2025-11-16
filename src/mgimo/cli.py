@@ -2,7 +2,8 @@
 
 Usage:
   mgimo quiz [--capitals=n] [--countries=k]
-  mgimo translate <text> [--from=src] [--to=dst | --to-random] [--roundtrip]
+  mgimo translate <text> [--from=source] [--to=target] [--roundtrip]
+  mgimo translate <text> --chain=lang1,lang2,...,langN
   mgimo translate <text> --detect
   mgimo translate --list [--search=str] [--json]
   mgimo --version
@@ -13,58 +14,74 @@ Options:
   --version       Show version
 """
 
+import json
+
 from docopt import docopt
 
 from mgimo.quiz.capitals import run
-from mgimo.translate.engine import provided_languages
+from mgimo.translate import (
+    provided_languages,
+    run_detect,
+    random_language_code,
+    run_translation,
+)
 
 __version__ = "0.6.0"
 
 # todo: Добавить dataset
 
 
+def filter_dict(mapping, term):
+    term = term.lower()
+    return {
+        code: lang
+        for code, lang in mapping.items()
+        if term in lang.lower() or term in code.lower()
+    }
+
+
+def prints(code, text):
+    lang = provided_languages[code]
+    print(f"{code} ({lang}): {text}")
+
+
 def dispatch_translate(args):
     if args["--detect"]:
-        from mgimo.translate import run_detect
-
         answer = run_detect(text=args["<text>"])
         print(answer)
     elif args["--list"]:
         lang_dict = provided_languages
         if args["--search"]:
-            search_str = args["--search"].lower()
-            lang_dict = {
-                code: lang
-                for code, lang in provided_languages.items()
-                if search_str in lang.lower() or search_str in code.lower()
-            }
-
+            lang_dict = filter_dict(provided_languages, args["--search"])
         if args["--json"]:
-            import json
-
             print(json.dumps(lang_dict, ensure_ascii=False, indent=2))
         else:
             for code, language in lang_dict.items():
                 print(f"{code}: {language}")
     else:
-        from mgimo.translate import run_translation
-
-        if args["--to-random"]:
-            from mgimo.translate.engine import random_language_code
-
-            dst = random_language_code()
-        else:
-            dst = args["--to"] or "ru"
+        if args["--to"] == "random":
+            args["--to"] = random_language_code()
+        dst = args["--to"] or "ru"
         src = args["--from"] or "auto"
         text = args["<text>"]
         answer_1 = run_translation(text, source=src, target=dst)
         if args["--roundtrip"]:
             answer_2 = run_translation(text=answer_1, source=dst, target=src)
             print(f"{src}: {text}")
-            print(f"{dst} ({provided_languages[dst]}): {answer_1}")
+            prints(dst, answer_1)
             print(f"{src}: {answer_2}")
+        elif args["--chain"]:
+            languages = args["--chain"].split(",")
+            current_text = text
+            current_source = src
+            prints(current_source, current_text)
+            for lang in languages:
+                translated_text = run_translation(current_text, current_source, lang)
+                prints(lang, translated_text)
+                current_text = translated_text
+                current_source = lang
         else:
-            print(answer_1)
+            prints(dst, answer_1)
 
 
 def main():

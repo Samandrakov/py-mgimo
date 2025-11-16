@@ -15,6 +15,11 @@ def run_command(cmdline: str) -> str:
     return proc.stdout.strip()
 
 
+def test_translate_random_parameter():
+    out = run_command('translate "Hello, world!" --from en --to random')
+    assert len(out) > 0, out
+
+
 def assert_returns(cmdline: str, expected_output: str):
     out = run_command(cmdline)
     assert expected_output in out, out
