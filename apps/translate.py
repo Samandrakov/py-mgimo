@@ -33,36 +33,33 @@ starting_texts = [
 
 st.title("Translate")
 
-# Create a form to batch the updates
-with st.form("translation_form"):
-    # Determine default values for widgets
-    # If we need to update from capture, use the captured values
-    if st.session_state.update_from_capture:
+# Initialize default values for widgets
+if st.session_state.update_from_capture:
+    default_text = st.session_state.captured_text
+    default_src = st.session_state.captured_src
+    # Reset the flag
+    st.session_state.update_from_capture = False
+else:
+    # Use captured values if they exist, otherwise use the sample
+    if st.session_state.captured_text:
         default_text = st.session_state.captured_text
-        default_src = st.session_state.captured_src
-        # Reset the flag
-        st.session_state.update_from_capture = False
     else:
-        # Use captured values if they exist, otherwise use the sample
-        if st.session_state.captured_text:
-            default_text = st.session_state.captured_text
-        else:
-            default_text = choice(starting_texts)
-        default_src = st.session_state.captured_src
-    
-    # Use keys for widgets to better manage their state
-    user_input = st.text_area("Enter text to translate:", value=default_text, height="content", key="user_input")
-    src = st.text_input("Translate from:", value=default_src, key="src_input")
-    dst = st.text_input("Translate to:", value="ru", key="dst_input")
-    
-    # Submit buttons for translate and capture
-    translate_col, capture_col = st.columns(2)
-    with translate_col:
-        translate_pressed = st.form_submit_button("Translate")
-    with capture_col:
-        capture_pressed = st.form_submit_button("Capture")
+        default_text = choice(starting_texts)
+    default_src = st.session_state.captured_src
 
-# Handle form submissions outside the form to prevent conflicts
+# Widgets outside the form to prevent reruns on every interaction
+user_input = st.text_area("Enter text to translate:", value=default_text, height="content", key="user_input")
+src = st.text_input("Translate from:", value=default_src, key="src_input")
+dst = st.text_input("Translate to:", value="ru", key="dst_input")
+
+# Buttons in columns
+col1, col2 = st.columns(2)
+with col1:
+    translate_pressed = st.button("Translate")
+with col2:
+    capture_pressed = st.button("Capture")
+
+# Handle button presses
 if translate_pressed:
     if not user_input.strip():
         st.warning("Enter some text to translate.")
