@@ -2,14 +2,6 @@ from random import choice
 import streamlit as st
 from mgimo.translate import Text, supported_languages, TranslationError
 
-# Initialize session state
-if 'captured_text' not in st.session_state:
-    st.session_state.captured_text = ""
-if 'captured_src' not in st.session_state:
-    st.session_state.captured_src = "auto"
-# Track if we need to update the widgets from captured values
-if 'update_from_capture' not in st.session_state:
-    st.session_state.update_from_capture = False
 # Track the last translated text
 if 'last_translated_text' not in st.session_state:
     st.session_state.last_translated_text = None
@@ -38,24 +30,18 @@ starting_texts = [
 
 st.title("Translate")
 
-# Initialize default values for widgets
-if st.session_state.update_from_capture:
-    default_text = st.session_state.captured_text
-    default_src = st.session_state.captured_src
-    # Reset the flag
-    st.session_state.update_from_capture = False
-else:
-    # Use captured values if they exist, otherwise use the sample
-    if st.session_state.captured_text:
-        default_text = st.session_state.captured_text
-    else:
-        default_text = choice(starting_texts)
-    default_src = st.session_state.captured_src
+# Initialize widget values in session state if they don't exist
+if 'user_input' not in st.session_state:
+    st.session_state.user_input = choice(starting_texts)
+if 'src_input' not in st.session_state:
+    st.session_state.src_input = "auto"
+if 'dst_input' not in st.session_state:
+    st.session_state.dst_input = "ru"
 
-# Widgets outside the form to prevent reruns on every interaction
-user_input = st.text_area("Enter text to translate:", value=default_text, height="content", key="user_input")
-src = st.text_input("Translate from:", value=default_src, key="src_input")
-dst = st.text_input("Translate to:", value="ru", key="dst_input")
+# Widgets bound to session state
+user_input = st.text_area("Enter text to translate:", value=st.session_state.user_input, height="content", key="user_input")
+src = st.text_input("Translate from:", value=st.session_state.src_input, key="src_input")
+dst = st.text_input("Translate to:", value=st.session_state.dst_input, key="dst_input")
 
 # Buttons in columns
 col1, col2 = st.columns(2)
@@ -86,18 +72,15 @@ if translate_pressed:
             st.error(f"An unexpected error occurred: {e}")
 
 if capture_pressed:
-    # Check if there's a last translated text to capture
+    # Update the widget values directly in session state
     if st.session_state.last_translated_text is not None:
-        # Update the captured state with the translated text and its language
-        st.session_state.captured_text = st.session_state.last_translated_text
-        st.session_state.captured_src = st.session_state.last_translated_language
+        st.session_state.user_input = st.session_state.last_translated_text
+        st.session_state.src_input = st.session_state.last_translated_language
     else:
-        # If no translation exists, use current user input
-        st.session_state.captured_text = user_input
-        st.session_state.captured_src = src
-    # Set flag to update widgets on next run
-    st.session_state.update_from_capture = True
-    # Rerun to apply the updates
+        # If no translation exists, use current values (though this shouldn't normally happen)
+        st.session_state.user_input = user_input
+        st.session_state.src_input = src
+    # Rerun to update the UI with new widget values
     st.rerun()
 
 # To run this app, use the command:
