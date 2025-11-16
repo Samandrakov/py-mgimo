@@ -2,6 +2,12 @@ from random import choice
 import streamlit as st
 from mgimo.translate import Text, supported_languages, TranslationError
 
+# Initialize session state
+if 'captured_text' not in st.session_state:
+    st.session_state.captured_text = ""
+if 'captured_src' not in st.session_state:
+    st.session_state.captured_src = "auto"
+
 # add extra pages
 
 starting_texts = [
@@ -22,12 +28,18 @@ starting_texts = [
 культурной и политической жизни.""",
 ]
 
-
 st.title("Translate")
-sample_text = choice(starting_texts)
-user_input = st.text_area("Enter text to translate:", sample_text)
-src = st.text_input("Translate from:", value="auto")
+
+# Use captured values if they exist, otherwise use the sample
+if st.session_state.captured_text:
+    default_text = st.session_state.captured_text
+else:
+    default_text = choice(starting_texts)
+
+user_input = st.text_area("Enter text to translate:", value=default_text)
+src = st.text_input("Translate from:", value=st.session_state.captured_src)
 dst = st.text_input("Translate to:", value="ru")
+
 if st.button("Translate"):
     if not user_input.strip():
         st.warning("Enter some text to translate.")
@@ -43,8 +55,12 @@ if st.button("Translate"):
             st.error(f"Translation error: {e}")
         except Exception as e:
             st.error(f"An unexpected error occurred: {e}")
+
 if st.button("Capture"):
-    pass  # pass *text* to *user_input* and *src* field
+    # Capture current values to session state
+    st.session_state.captured_text = user_input
+    st.session_state.captured_src = src
+    st.rerun()
 
 # To run this app, use the command:
 # streamlit run translate.py
