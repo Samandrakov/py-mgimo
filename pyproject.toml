@@ -20,3 +20,8 @@ build-backend = "hatchling.build"
 dev = [
     "pytest>=8.4.1",
 ]
+docs = [
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.5.49",
+    "mkdocstrings[python]>=0.27.0",
+]
